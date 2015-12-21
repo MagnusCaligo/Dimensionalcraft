@@ -1,5 +1,6 @@
 package com.dimensionalcraft.world;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -36,5 +37,8 @@ public class World {
 		render.exit();
 		System.exit(0);
 	}
+=======
+public class World {
+>>>>>>> refs/remotes/origin/Desktop
 
 }
