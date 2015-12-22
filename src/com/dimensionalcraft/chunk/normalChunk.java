@@ -30,7 +30,11 @@ public class normalChunk extends Chunk{
 					if(blockId != Block.NONE){
 						gl.glLoadIdentity();
 						gl.glRotatef(Camera.getYAngle(), 0f, 1f, 0f);
+<<<<<<< HEAD
+						gl.glTranslatef(-Camera.getPosition()[0], -Camera.getPosition()[1], -Camera.getPosition()[2]);
+=======
 						gl.glTranslatef(Camera.getPosition()[0], Camera.getPosition()[1], Camera.getPosition()[2]);
+>>>>>>> origin/Desktop
 						gl.glTranslatef((this.xpos * 16)+x, y, (this.zpos*15)+z);
 
 						
