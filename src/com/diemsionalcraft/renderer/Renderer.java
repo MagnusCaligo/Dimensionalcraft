@@ -108,7 +108,10 @@ public class Renderer implements GLEventListener{
 		gl.glLightfv(gl.GL_LIGHT1, gl.GL_POSITION, Lighting.lightLocation, 0);
 		gl.glEnable(gl.GL_LIGHT1);
 		gl.glEnable(gl.GL_LIGHTING);
+<<<<<<< HEAD
 		gl.glEnable(gl.GL_COLOR_MATERIAL);
+=======
+>>>>>>> origin/Desktop
 		
 		
 	}
@@ -123,7 +126,11 @@ public class Renderer implements GLEventListener{
 		gl.glViewport(0, 0, width, height);
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
+<<<<<<< HEAD
 		glu.gluPerspective(70.0f,  h,  1.0,  80);
+=======
+		glu.gluPerspective(45.0f,  h,  1.0,  20);
+>>>>>>> origin/Desktop
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		
