@@ -1,18 +1,18 @@
 package com.dimensionalcraft.world;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import com.diemsionalcraft.renderer.Renderer;
+import com.dimensionalcraft.blocks.Block;
 import com.dimensionalcraft.chunk.Chunk;
 import com.dimensionalcraft.chunk.normalChunk;
 
 public class World {
 	
-	private ArrayList<ArrayList<Chunk>> chunks;
-	private Renderer render;
+	private static ArrayList<ArrayList<Chunk>> chunks;
+	private static Renderer render;
 	
 	public World(JFrame frame){
 		
@@ -33,12 +33,21 @@ public class World {
 		return chunks.get(x).get(y);
 	}
 	
-	public void unLoad(){
-		render.exit();
+	public static void unLoad(){
+		render.exit();	
+		
 		System.exit(0);
 	}
-=======
-public class World {
->>>>>>> refs/remotes/origin/Desktop
+	
+	public static Block getBlockAt(int x, int y, int z){
+		
+		Chunk chunk = chunks.get(x%15).get(z%15);
+		
+		Integer[] block = chunk.getBlockData((x%15)+chunk.getXpos(), y, (z%15)+chunk.getZpos());
+		
+		return Block.blockIDs.get(block[0]);
+		
+		
+	}
 
 }
