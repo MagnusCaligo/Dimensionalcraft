@@ -13,12 +13,14 @@ import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.glu.GLU;
 import javax.swing.JFrame;
 
+import com.dimensionalcraft.blocks.Block;
 import com.dimensionalcraft.chunk.Chunk;
-import com.dimensionalcraft.chunk.normalChunk;
 import com.dimensionalcraft.entities.Player;
+import com.dimensionalcraft.input.keyListener;
+import com.dimensionalcraft.input.mouseListener;
+import com.dimensionalcraft.world.World;
 import com.jogamp.opengl.util.FPSAnimator;
 
-import InputManager.keyListener;
 import Tutorial.Lighting;
 
 public class Renderer implements GLEventListener{
@@ -45,12 +47,16 @@ public class Renderer implements GLEventListener{
 		frame.setSize(frame.getContentPane().getPreferredSize());
 		frame.setVisible(true);
 		frame.addKeyListener(new keyListener());
+		frame.addMouseListener(new mouseListener());
+		
+		glcanvas.addKeyListener(new keyListener());
+		mouseListener m = new mouseListener();
+		glcanvas.addMouseListener(m);
+		glcanvas.addMouseMotionListener(m);
 		
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
-				if(animator.isStarted())
-					animator.stop();
-				System.exit(0);
+				World.unLoad();
 			}
 		});
 		
@@ -59,6 +65,16 @@ public class Renderer implements GLEventListener{
 	}
 	
 	public void exit(){
+		
+		Block b = World.getBlockAt(-1, 0, 0);
+		if(b==null)
+			System.out.println("Blah");
+		if(b.getVisible()){
+			System.out.println("True");
+		}else{
+			System.out.println(b.getVisible());
+		}
+		
 		if(animator.isStarted())
 			animator.stop();
 	}
@@ -75,13 +91,7 @@ public class Renderer implements GLEventListener{
 			}
 		}
 		
-		glu.gluLookAt(0,0,-10,
-				0f, Camera.getYAngle(), Camera.getZAngle()-6, 
-				0, 0,0);
-		
 		Player.update();
-
-		
 		
 		
 	}
@@ -108,10 +118,8 @@ public class Renderer implements GLEventListener{
 		gl.glLightfv(gl.GL_LIGHT1, gl.GL_POSITION, Lighting.lightLocation, 0);
 		gl.glEnable(gl.GL_LIGHT1);
 		gl.glEnable(gl.GL_LIGHTING);
-<<<<<<< HEAD
 		gl.glEnable(gl.GL_COLOR_MATERIAL);
-=======
->>>>>>> origin/Desktop
+		gl.glEnable(gl.GL_CULL_FACE);
 		
 		
 	}
@@ -126,11 +134,7 @@ public class Renderer implements GLEventListener{
 		gl.glViewport(0, 0, width, height);
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
-<<<<<<< HEAD
 		glu.gluPerspective(70.0f,  h,  1.0,  80);
-=======
-		glu.gluPerspective(45.0f,  h,  1.0,  20);
->>>>>>> origin/Desktop
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		

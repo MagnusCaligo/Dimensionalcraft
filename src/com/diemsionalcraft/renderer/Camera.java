@@ -2,11 +2,7 @@ package com.diemsionalcraft.renderer;
 
 public class Camera {
 	
-<<<<<<< HEAD
-	private static float cameraPosition[] = {0,2,6};
-=======
-	private static float cameraPosition[] = {0,0,-6};
->>>>>>> origin/Desktop
+	private static float cameraPosition[] = {0,3,6};
 	private static float angleX = 0;
 	private static float angleY = 0;
 	private static float angleZ = 0;
@@ -20,7 +16,8 @@ public class Camera {
 	}
 	
 	public static void setXAngle(float newX){
-		angleX = newX;
+		if(newX >= -90 && newX <= 90)
+			angleX = newX;
 	}
 	
 	public static void setYAngle(float newY){
@@ -42,5 +39,7 @@ public class Camera {
 	public static void setZAngle(float newZ){
 		angleZ = newZ;
 	}
+	
+
 	
 }

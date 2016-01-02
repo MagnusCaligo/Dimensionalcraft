@@ -1,22 +1,18 @@
 package com.dimensionalcraft.world;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/Desktop
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import com.diemsionalcraft.renderer.Renderer;
+import com.dimensionalcraft.blocks.Block;
 import com.dimensionalcraft.chunk.Chunk;
 import com.dimensionalcraft.chunk.normalChunk;
 
-<<<<<<< HEAD
 public class World {
 	
-	private ArrayList<ArrayList<Chunk>> chunks;
-	private Renderer render;
+	private static ArrayList<ArrayList<Chunk>> chunks;
+	private static Renderer render;
 	
 	public World(JFrame frame){
 		
@@ -37,42 +33,21 @@ public class World {
 		return chunks.get(x).get(y);
 	}
 	
-	public void unLoad(){
-		render.exit();
+	public static void unLoad(){
+		render.exit();	
+		
 		System.exit(0);
 	}
-=======
-public class World {
 	
-	private ArrayList<ArrayList<Chunk>> chunks;
-	private Renderer render;
-	
-	public World(JFrame frame){
+	public static Block getBlockAt(int x, int y, int z){
 		
-		chunks = new ArrayList<ArrayList<Chunk>>();
-		for(int i = 0; i < 5; i++){
-			chunks.add(new ArrayList<Chunk>());
-			for(int m = 0; m < 5; m++){
-				chunks.get(i).add(new normalChunk(i,m));
-			}
-		}
-
+		Chunk chunk = chunks.get(x%15).get(z%15);
 		
-		render = new Renderer(chunks, frame);
+		Integer[] block = chunk.getBlockData((x%15)+chunk.getXpos(), y, (z%15)+chunk.getZpos());
+		
+		return Block.blockIDs.get(block[0]);
+		
 		
 	}
-	
-	public Chunk getChunk(int x, int y){
-		return chunks.get(x).get(y);
-	}
-	
-	public void unLoad(){
-		render.exit();
-		System.exit(0);
-	}
-=======
-public class World {
->>>>>>> refs/remotes/origin/Desktop
->>>>>>> origin/Desktop
 
 }
